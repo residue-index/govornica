@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>dark</title>
+  <style>
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: #000;
+    }
+    body {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    body.light { background: #fff; }
+  </style>
+</head>
+<body>
+<script>
+(() => {
+  const body = document.body;
+  const theme = document.querySelector('meta[name="theme-color"]');
+  const toggle = () => {
+    const light = body.classList.toggle('light');
+    theme.setAttribute('content', light ? '#ffffff' : '#000000');
+  };
+  body.addEventListener('click', toggle);
+  body.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggle();
+    }
+  });
+  body.tabIndex = 0;
+})();
+</script>
+</body>
+</html>
